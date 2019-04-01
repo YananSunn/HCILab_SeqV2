@@ -787,8 +787,10 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     modeTip_s.setText("开启");
+                    changeLogStatus(2);
                 }else {
                     modeTip_s.setText("关闭");
+                    changeLogStatus(1);
                 }
             }
         });
