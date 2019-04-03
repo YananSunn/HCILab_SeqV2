@@ -55,7 +55,7 @@ public class Microphone extends Thread {
                 if (readSize != bufferSize) {
                     Log.d("microphone", "buff: " + bufferSize + ", read: " + readSize);
                 }
-                //father.logToFile("mic", buffer);
+                //father.logToFile0("mic", buffer);
             }
             audioRecord.stop();
         } catch (Exception e) {

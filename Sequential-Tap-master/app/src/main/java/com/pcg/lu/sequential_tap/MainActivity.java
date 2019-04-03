@@ -249,11 +249,11 @@ public class MainActivity extends AppCompatActivity {
             for (float[] values : inertialSensor.listGravity) logBuffer += String.format("gra %.5f %.5f %.5f\n", values[0], values[1], values[2]);
             inertialSensor.listGravity.clear();
         }
-        /*synchronized (microphone.buffer) {
+        synchronized (microphone.buffer) {
             logBuffer += "mic";
             for (byte value: microphone.buffer) logBuffer += " " + value;
             logBuffer += "\n";
-        }*/
+        }
         if (logBuffer.length() > 1024) {
             logger.write(logBuffer);
             logger.flush();
@@ -336,6 +336,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //
+//    /**
+//     * 开始录音
+//     */
+//    private void record(){
+//        int mResult = -1;
+//        AudioRecordFunc mRecord_1 = AudioRecordFunc.getInstance();
+//        mResult = mRecord_1.startRecordAndFile();
+//    }
+//    /**
+//     * 停止录音
+//     */
+//    private void stop(){
+//        AudioRecordFunc mRecord_1 = AudioRecordFunc.getInstance();
+//        mRecord_1.stopRecordAndFile();
+//    }
+
+
+//    AudioUtil audio = new AudioUtil();
 
     // 工具函数
     // 计算绝对值
@@ -788,9 +807,15 @@ public class MainActivity extends AppCompatActivity {
                 if (isChecked){
                     modeTip_s.setText("开启");
                     changeLogStatus(2);
+                    microphone.start();
+//                    audio.startRecord();
+//                    record();
                 }else {
                     modeTip_s.setText("关闭");
                     changeLogStatus(1);
+                    microphone.isRun = false;
+//                    audio.stopRecord();
+//                    stop();
                 }
             }
         });
@@ -1098,9 +1123,11 @@ public class MainActivity extends AppCompatActivity {
                         if (isChecked){
                             modeTip_s.setText("开启");
                             changeLogStatus(2);
+                            microphone.start();
                         }else {
                             modeTip_s.setText("关闭");
                             changeLogStatus(1);
+                            microphone.interrupt();
                         }
                     }
                 });

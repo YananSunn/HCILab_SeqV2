@@ -42,10 +42,10 @@ public class InertialSensor implements SensorEventListener  {
         dataGyroscope = new float[] { 0, 0, 0 };
         listGyroscope = new ArrayList<>();
 
-        /*sensorMegneticField = father.sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        sensorMegneticField = father.sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         father.sensorManager.registerListener(this, sensorMegneticField, SensorManager.SENSOR_DELAY_FASTEST);
         dataMegneticField = new float[] { 0, 0, 0 };
-        listMegneticField = new ArrayList<>();*/
+        listMegneticField = new ArrayList<>();
 
         sensorGravity = father.sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
         father.sensorManager.registerListener(this, sensorGravity, SensorManager.SENSOR_DELAY_FASTEST);
@@ -70,17 +70,18 @@ public class InertialSensor implements SensorEventListener  {
             //if (father.isLogging) { synchronized (listGyroscope) { listGyroscope.add(event.values); } }
             //father.logToFile("gyr", event.values);
         }
-        /*if (event.sensor == sensorMegneticField) {
+        if (event.sensor == sensorMegneticField) {
+            father.logToFile3(String.format("meg %.5f %.5f %.5f", event.values[0], event.values[1], event.values[2]));
             //synchronized (dataMegneticField) { dataMegneticField = event.values; }
             //if (father.isLogging) { synchronized (listMegneticField) { listMegneticField.add(event.values); } }
             //father.logToFile("meg", event.values);
-        }*/
-        if (event.sensor == sensorGravity) {
-            father.logToFile3(String.format("gra %.5f %.5f %.5f", event.values[0], event.values[1], event.values[2]));
-            //synchronized (dataGravity) { dataGravity = event.values; }
-            //if (father.isLogging) { synchronized (listGravity) { listGravity.add(event.values); } }
-            //father.logToFile("gra", event.values);
         }
+//        if (event.sensor == sensorGravity) {
+//            father.logToFile3(String.format("gra %.5f %.5f %.5f", event.values[0], event.values[1], event.values[2]));
+//            //synchronized (dataGravity) { dataGravity = event.values; }
+//            //if (father.isLogging) { synchronized (listGravity) { listGravity.add(event.values); } }
+//            //father.logToFile("gra", event.values);
+//        }
 
         /*float[] r = new float[9];
         float[] v = new float[3];
